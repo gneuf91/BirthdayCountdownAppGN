@@ -24,10 +24,11 @@ class BirthdayForm extends Component {
         })
     }
 
-    handleGenerate() {
+    handleGenerate(event) {
         this.setState({
             formCompleted: true
         })
+        event.preventDefault();
     }
 
     handleChangeDate() {
@@ -38,7 +39,7 @@ class BirthdayForm extends Component {
 
     render () {
         return (
-            <div className="birthday-container">
+            <form onSubmit={this.handleGenerate} className="birthday-container">
                 {
                     this.state.formCompleted ? 
                     <div className="clock-container">
@@ -47,18 +48,18 @@ class BirthdayForm extends Component {
                     </div>
                     :
                     <div className="date-picker-container">
-                        <DatePicker 
+                        <DatePicker className="date-picker"
                         selected={this.state.startDate}
                         onChange={this.handleChange}
                         />
                         <div className="submit-container">
-                            <a onClick={this.handleGenerate}>Generate Countdown</a>  
+                            <input type="submit" value="Generate Countdown"/>  
                         </div> 
                     </div>
                 }
                 
 
-            </div>
+            </form>
         )
     }
 }
